@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="https://getbootstrap.com/favicon.ico">
+
+  <title>RightFluencer</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{{ url_for('static', filename='bootstrap.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='rating.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/components/label.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/components/icon.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/components/statistic.min.css" />
+
+  <head>
+   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+ </head>
+
+ <!-- Custom styles for this template -->
+ <link href="{{ url_for('static', filename='dashboard.css') }}" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
+ <style type="text/css">/* Chart.js */
+@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
+<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/brands.js" integrity="sha384-sCI3dTBIJuqT6AwL++zH7qL8ZdKaHpxU43dDt9SyOzimtQ9eyRhkG3B7KMl6AO19" crossorigin="anonymous"></script>
+<body>
+  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/influencers/start/">RightFluencer</a>
+    <!-- <input class="form-control form-control-dark w-100" placeholder="Search" aria-label="Search" type="text"> -->
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home" color="#384047"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                Home Page
+              </a>
+            </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/influencers/categories/">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" cardlass="feather feather-list" color="#384047"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg>
+              Categories
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/influencers/all">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              Influencers
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/influencers/search/">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              Search
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/influencers/about/">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line></svg>
+              About
+            </a>
+          </li>
+        </ul>
+
+      </div>
+    </nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+      <div class="row">
+        <div class="col-sm-2">
+          <img src="{{ ig_thumbnail_url }}" height="180" width="180" style="margin-left: -40px;" class="rounded" onError="this.onerror=null;this.src='{{ url_for('static', filename='noprofile.jpg') }}';">
+        </div>
+        <div class="col-sm-7">
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <div><img src="https://use.fontawesome.com/releases/v5.0.9/svgs/solid/id-badge.svg" height="20" width="20"></i><b style="padding-left: 10px">{{ tw_name }} </b></div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <div><img src="https://use.fontawesome.com/releases/v5.0.9/svgs/solid/home.svg" height="20" width="20"><b style="padding-left: 10px">{{ tw_location }} </b></div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <div><img src="https://use.fontawesome.com/releases/v5.0.9/svgs/solid/cube.svg" height="20" width="20"><b style="padding-left: 10px">{{ fb_category }} </b></div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <div><img src="https://use.fontawesome.com/releases/v5.0.9/svgs/solid/info-circle.svg" height="20" width="20"><b style="padding-left: 10px">{{ tw_description }}</b></div>
+            </li>
+          </ul>
+        </div>
+        <div class="col-sm-3">
+          <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.3155909033!2d-74.2605518260087!3d40.69714775801557!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sca!4v1521697830453" width="250" height="180" frameborder="0" style="border:0" allowfullscreen></iframe> -->
+
+          <div class="card border-dark mb-3" style="max-width: 18rem;">
+            <div class="card-header text-center">@{{ tw_handle }}</div>
+            <div class="card-body text-dark">
+              <center><div class="ui statistic">
+                <div class="value">
+                  #{{ rank|int }}
+                </div>
+                <div class="label">
+                  in "{{ fb_category }}"
+                </div>
+              </div></center>
+            </div>
+          </div>
+          
+          
+          
+        </div>
+      </div>
+      <br>
+<!--       <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+
+      </div>
+    -->      <br>
+    <div class="row">
+      <div class="col-3">
+        <div class="card border-dark mb-3" style="max-width: 18rem;">
+          <div class="card-header text-center">Twitter</div>
+          <div class="card-body text-dark">
+            <a href="{{ twitter_url }}"><h5 class="card-title text-center" style="color: #1da1f2; !important">{{ tw_followers_count }}   <img src="http://itouchappreviewers.com/wp-content/uploads/2015/01/twitter-logo_22.png" height="22" width="22"></i></h5></a>
+            <p class="card-text text-center">Followers</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="card border-dark mb-3" style="max-width: 18rem;">
+          <div class="card-header text-center">Instagram</div>
+          <div class="card-body text-dark">
+            <a href="{{ instagram_url }}"><h5 class="card-title text-center" style="color: #8a3ab9;">{{ ig_followers }} <img src="https://instagram-brand.com/wp-content/themes/ig-branding/assets/images/ig-logo-email.png" height="22" width="22"></h5></a>
+            <p class="card-text text-center">Followers</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="card border-dark mb-3" style="max-width: 18rem;">
+          <div class="card-header text-center">YouTube</div>
+          <div class="card-body text-dark">
+            <a href="{{ youtube_url }}"><h5 class="card-title text-center" style="color: #cc181e;"> <img src="https://static.getjar.com/icon-50x50/70/901145_thm.png" height="24" width="24"></i> {{ yt_subscriber_count }}</h5></a>
+            <p class="card-text text-center">Subscribers</p>
+          </div>
+        </div>
+      </div>
+      {% if (fb_page_likes|string() != "-1.00") %}
+      <div class="col-3">
+        <div class="card border-dark mb-3" style="max-width: 18rem;">
+          <div class="card-header text-center">Facebook</div>
+          <div class="card-body text-dark">
+            <a href="{{ facebook_url }}"><h5 class="card-title text-center" style="color: #3b5998"><img src="https://cdn3.androidworld.nl/179370f8f9/media/thumbnails/2e/86/2e8635c58324f31b69c6bb16234c3a9b.png" height="18" width="18">  
+
+            {{ fb_page_likes }} </h5></a>
+            <p class="card-text text-center">Page Likes</p>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+<!--       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          {{ plot_1_div|safe }}
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          {{ plot_2_div|safe }}
+        </div>
+
+      --> 
+      <div class="row">
+        <div class="col-sm-6" style="margin-left: -50px;">
+          {{ plot_1_div|safe }}    
+        </div>
+        <div class="col-sm-6" style="margin-left: 50px;">
+          {{ plot_3_div|safe }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          {{ plot_2_div|safe }}
+        </div>
+        <div class="col-6">
+          {{ plot_4_div|safe }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="card card-body">
+          {{ wfall_div|safe }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="card card-body">
+          {{ plot_5_div|safe }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="card card-body">
+          {{ plot_6_div|safe }}
+        </div>
+      </div>
+      <br>
+      <h4>{{ tw_name }} talks the most about </h4>
+      <hr class="my-4">
+      <div class="row">
+        {% for topic in topics %}
+        <h3><span class="badge badge-pill badge-primary">{{ topic }}</span></h3><pre> </pre>
+        {% endfor %}
+      </div>
+      <br>
+      <div class="row">
+        <div class="card card-body bg-light">
+          <center><h5>For a more detailed topic analysis on {{ tw_handle }}:</h5></center>
+          <center><div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target=".bd-example-modal-lg-tw">Twitter</button>
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target=".bd-example-modal-lg-ig">Instagram</button>
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target=".bd-example-modal-lg-yt">YouTube</button>
+            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target=".bd-example-modal-lg-fb">Facebook</button>
+          </div></center>
+          
+        </div>     
+        <div class="modal fade bd-example-modal-lg-tw" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="#bd-example-modal-lg-tw">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Topic modelling using LDA on Twitter data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="window.history.pushState('page2', 'Title', '/influencers/?tw_handle={{ tw_handle }}');">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div style="padding-left: 20px; padding-right: 20px; padding-top: 5px; padding-bottom: 5px;">{{ tw_tm_div|safe }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade bd-example-modal-lg-ig" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Topic modelling using LDA on Instagram data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="window.history.pushState('page2', 'Title', '/influencers/?tw_handle={{ tw_handle }}');">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div style="padding-left: 20px; padding-right: 20px; padding-top: 5px; padding-bottom: 5px;">{{ ig_tm_div|safe }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade bd-example-modal-lg-yt" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Topic modelling using LDA on YouTube data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="window.history.pushState('page2', 'Title', '/influencers/?tw_handle={{ tw_handle }}');">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div style="padding-left: 20px; padding-right: 20px; padding-top: 5px; padding-bottom: 5px;">{{ yt_tm_div|safe }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade bd-example-modal-lg-fb" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Topic modelling using LDA on Facebook data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="window.history.pushState('page2', 'Title', '/influencers/?tw_handle={{ tw_handle }}');">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div style="padding-left: 20px; padding-right: 20px; padding-top: 5px; padding-bottom: 5px;">{{ fb_tm_div|safe }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <h4>Popular items in {{ tw_name }}'s pics! </h4>
+      <hr class="my-4">
+      <div class="row">
+        {% for image in random_images %}
+        <img height="180" width="180" class="rounded" style="padding-left: 5px;" src="{{ url_for('static', filename='instagram-images/' + tw_handle + '/' + image) }}">
+        {% endfor %}
+        <br>
+      </div>
+      <br>
+      <div class="row">
+        {% for cv_result in cv_results %}
+        <a style="margin-top: 5px;" class="ui purple basic label">{{ cv_result['class_description'] }}</a>
+        {% endfor %}
+      </div>
+      <br>
+      <br>
+      <h4> Get to know {{ tw_name }}'s personality </h4>
+      <hr class="my-4">
+      <div class="row">
+        <div class="col-12">
+          <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="pills-Overview-tab" data-toggle="pill" href="#pills-Overview" role="tab" aria-controls="pills-verview" aria-selected="true">Overview</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-Agreeableness-tab" data-toggle="pill" href="#pills-Agreeableness" role="tab" aria-controls="pills-Agreeableness" aria-selected="false">Agreeableness</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-Extraversion-tab" data-toggle="pill" href="#pills-Extraversion" role="tab" aria-controls="pills-Extraversion" aria-selected="false">Extraversion</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-Conscientiousness-tab" data-toggle="pill" href="#pills-Conscientiousness" role="tab" aria-controls="pills-Conscientiousness" aria-selected="false">Conscientiousness</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-Neuroticism-tab" data-toggle="pill" href="#pills-Neuroticism" role="tab" aria-controls="pills-Neuroticism" aria-selected="false">Emotional Range</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-Openness-tab" data-toggle="pill" href="#pills-Openness" role="tab" aria-controls="pills-Openness" aria-selected="false">Openness</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-Overview" role="tabpanel" aria-labelledby="pills-Overview-tab">
+          <div class="row">
+            <div class="col-6">
+              <img src="{{ url_for('static', filename='personality_traits/' + tw_handle + '.png') }}" width="450" height="300">  
+            </div>
+            <div class="col-6">
+              <ul>
+                <li><b>Agreeableness:</b> Higher: Value getting along with others. They have a more optimistic view of human nature. Lower: Value self interests over others. They are more skeptical of others' motives.
+                </li>
+                <li><b>Extroversion:</b> Higher: More energetic and pronounced engagement with the external world. Likes high group visibility, talking, and asserting themselves. Lower: Needs less stimulation and are more independent of their social world. It does not mean they are shy, un-friendly, or antisocial.
+                </li>
+                <li><b>Conscientiousness:</b> Higher: More self-disciplined, dutiful, or aiming for achievement against measures or outside expectations. Lower: More likely to prefer the spontaneous over the planned.
+                </li>
+                <li>
+                  <b>Emotional range:</b> Higher: More likely to have negative emotions or get upset. It could mean they are going through a tough time. Lower: More calm and less likely to get upset. It does not mean they are positive, or happy people.
+                </li>
+                <li><b>Openness:</b> Openness to experience. Higher: Intellectually curious, emotionally-aware, sensitive to beauty and willing to try new things. Lower: Preferring the plain, straightforward, and obvious over the complex, ambiguous, and subtle.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="pills-Agreeableness" role="tabpanel" aria-labelledby="pills-Agreeableness-tab">
+          <div class="row">
+            <div class="col-6">
+              <img src="{{ url_for('static', filename='personality_traits/' + tw_handle + '_big5_agreeableness.png') }}" width="450" height="300">
+            </div>
+            <div class="col-6">
+              <ul>
+                <li><b>Sympathy:</b> Attitude of compassion for others; kindness.</li>
+                <li><b>Altruism:</b> Active and genuine concern for the welfare of others.</li>
+                <li><b>Straightforwardness:</b> Frank and genuine in expression; candid, blunt.</li>
+                <li><b>Trust:</b> Level of belief in the sincerity and good intentions of others.</li>
+                <li><b>Cooperation:</b> Dislike of confrontations. Responding to interpersonal conflict with a willingness to compromise.</li>
+                <li><b>Modesty:</b> Tendency to be unassuming and play down own achievements; humility.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="pills-Extraversion" role="tabpanel" aria-labelledby="pills-Extraversion-tab">
+          <div class="row">
+            <div class="col-6">
+              <img src="{{ url_for('static', filename='personality_traits/' + tw_handle + '_big5_extraversion.png') }}" width="450" height="300">
+            </div>
+            <div class="col-6">
+              <ul>
+                <li><b>Activity level:</b> Pace of living; level of busyness.</li>
+                <li><b>Assertiveness:</b> Forcefulness of expression; pursuit of leadership and social ascendancy; desire to direct the activities of others.</li>
+                <li><b>Warmth:</b> Interest in and friendliness towards others; socially confident.</li>
+                <li><b>Gregariousness:</b> Fondness for the company of others; sociability.</li>
+                <li><b>Cheerfulness:</b> Tendency to experience or express positive emotions.</li>
+                <li><b>Excitement-seeking:</b> A need for environmental stimulation.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="pills-Conscientiousness" role="tabpanel" aria-labelledby="pills-Conscientiousness-tab">
+          <div class="row">
+            <div class="col-6">
+              <img src="{{ url_for('static', filename='personality_traits/' + tw_handle + '_big5_conscientiousness.png') }}" width="450" height="300">
+            </div>
+            <div class="col-6">
+              <ul>
+                <li><b>Achievement striving:</b> The need for personal achievement and sense of direction.</li>
+                <li><b>Self-discipline:</b> Will-power; the capacity to begin tasks and follow through to completion in spite of boredom or distractions.</li>
+                <li><b>Self-efficacy:</b> Belief in one's own competence.</li>
+                <li><b>Orderliness:</b> Personal organization, tidiness, neatness.</li>
+                <li><b>Cautiousness:</b> Tendency to think things through before acting or speaking.</li>
+                <li><b>Dutifulness:</b> Sense of duty; amount of emphasis placed on fulfilling obligations.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="pills-Neuroticism" role="tabpanel" aria-labelledby="pills-Neuroticism-tab">
+          <div class="row">
+            <div class="col-6">
+              <img src="{{ url_for('static', filename='personality_traits/' + tw_handle + '_big5_neuroticism.png') }}" width="450" height="300">
+            </div>
+            <div class="col-6">
+              <ul>
+                <li><b>Fiery:</b> Tendency to experience–but not necessarily express–anger or frustration.</li>
+                <li><b>Impulsiveness:</b> Tendency to act on cravings and urges rather over resisting them or delaying gratification.</li>
+                <li><b>Sensitivity to stress:</b> Difficulty in coping with stress or pressure in difficult situations.</li>
+                <li><b>Self-consciousness:</b> Concern with rejection, embarrassment; shyness.</li>
+                <li><b>Melancholy:</b> Normal tendency to experience feelings of guilt, sadness, hopelessness, or loneliness.</li>
+                <li><b>Prone to worry:</b> Tendency to dwell on difficulty or troubles; easily experience unease or concern.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="pills-Openness" role="tabpanel" aria-labelledby="pills-Openness-tab">
+          <div class="row">
+            <div class="col-6">
+              <img src="{{ url_for('static', filename='personality_traits/' + tw_handle + '_big5_openness.png') }}" width="450" height="300">
+            </div>
+            <div class="col-6">
+              <ul>
+                <li><b>Artistic interests:</b> Appreciation for art and beauty, both man-made and in nature.</li>
+                <li><b>Adventurousness:</b> Eagerness to trying new activities and experiencing new things.</li>
+                <li><b>Intellect:</b> Intellectual curiosity; openness to new ideas.</li>
+                <li><b>Emotionality:</b> Emotional availability; awareness of own feelings.</li>
+                <li><b>Imagination:</b> Openness to creating an inner world of fantasy.</li>
+                <li><b>Authority-challenging:</b> Openness to re-examine own values and traditions; readiness to challenge authority.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <h5>Help us make RightFluencer better!</h5>
+        <hr class="my-4">
+        <form action="/review/" method="post" role="form">
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Rate our results</label>
+            <select class="form-control" id="exampleFormControlSelect1" name="rating" required>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Leave a review</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="review" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <input type="hidden" name="tw_handle" value="{{ tw_handle }}" />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>      
+</main>
+</div>
+</div>
+
+    <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+
+      <script src="{{ url_for('static', filename='jquery-3.js') }}" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')
+      function change_url(){
+        window.location.search = jQuery.query.set("rows", 10);
+      }
+    </script>
+    <script src="{{ url_for('static', filename='popper.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap.js') }}"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <!-- <script src="{{ url_for('static', filename='d3.js') }}"></script> -->
+    <script src="{{ url_for('static', filename='d3.layout.cloud.js') }}"></script>
+    <!-- <script src="{{ url_for('static', filename='d3.wordcloud.js') }}"></script> -->
+
+
+    <!-- Icons -->
+    <script src="static/feather.js"></script>
+    <script>
+      feather.replace()
+    </script>
+    <style type="text/css">
+    .modal-lg {
+      max-width: 90% !important;
+    }
+
+  </style>
+
+</body></html>
