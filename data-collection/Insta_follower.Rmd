@@ -1,0 +1,42 @@
+
+R Code to get instagram follower count
+```{r}
+library(httr)
+library(jsonlite)
+# username = 'aringhosh'
+
+getFollowerCount <- function(username){
+  url = paste0('https://www.instagram.com/', username , '/?__a=1')
+  r = httr::GET(url = url)
+  text = content(r, "text", encoding = 'UTF-8')
+  json_ = fromJSON(text)
+  follower_count = json_$graphql$user$edge_followed_by$count
+  return(follower_count)
+}
+
+all_inf = read.table('list-all.txt', sep = '\n', stringsAsFactors = F)$V1
+for (influencer in all_inf ) {
+  print(influencer)
+  count = getFollowerCount(influencer)
+  writeDF = data.frame(date(), as.integer(as.POSIXct(Sys.time())) , influencer, count)
+  write.table(writeDF, 'instagram-historical-followers-count.csv', sep = ",", append = T, row.names = F, col.names = F)
+}
+
+```
+
+
+```{r}
+df = read.csv('instagram-historical-followers-count.csv', header = F, stringsAsFactors = F)
+df$date = as.Date(as.POSIXct(df$V2, origin="1970-01-01"))
+
+data <- aggregate(df["V4"], by=df[c("date", "V3")], sum)
+
+plotdata <- data[data$V3=='MKBHD',]
+plot(plotdata$date, plotdata$V4, type = 'l')
+# barplot(plotdata$V4)
+
+# difference over time
+# dates <- plotdata$date[2:(length(plotdata) -1)]
+# diff(plotdata$V4)
+```
+
