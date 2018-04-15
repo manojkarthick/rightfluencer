@@ -18,11 +18,11 @@ An interactive web application and dashboard that allows you to find the right i
 
 #### Technology Stack
 
-Cloud Hosting: Google Cloud platform
-Visualization: Plotly, D3.js, matplotlib, pyLDAvis
-Web and UI: Apache web server, Flask, Bootstrap, Semantic UI, jinja2
-Data analysis: NLTK, KerasR, gensim, Pandas, Apache Spark, nGram, WordNet, PyMongo, Watson Personality Insights API
-Data cleaning: Pandas, Spark Dataframes
-Data storage: MongoDB
-Data collection: RESTful API Client, Web scrapers
-Data sources: Instagram, Facebook, YouTube, Twitter, Klout
+* Cloud Hosting: Google Cloud platform
+* Visualization: Plotly, D3.js, matplotlib, pyLDAvis
+* Web and UI: Apache web server, Flask, Bootstrap, Semantic UI, jinja2
+* Data analysis: NLTK, KerasR, gensim, Pandas, Apache Spark, nGram, WordNet, PyMongo, Watson Personality Insights API
+* Data cleaning: Pandas, Spark Dataframes
+* Data storage: MongoDB
+* Data collection: RESTful API Client, Web scrapers
+* Data sources: Instagram, Facebook, YouTube, Twitter, Klout
