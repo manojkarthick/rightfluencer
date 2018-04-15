@@ -1,0 +1,12 @@
+ngram combined_probability - avg 
+cv relevancy - avg of 6 values
+tm relevancy - avg of 6 values
+
+followers
+fb = ig < tw < yt
+
+order of increasing effort (popularity)
+instagram < twitter < facebook < youtube
+
+order of increasing effort (interaction)
+twitter < facebook < instagram < youtube
