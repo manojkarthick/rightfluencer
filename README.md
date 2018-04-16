@@ -3,7 +3,7 @@
 This repository contains the codebase and the documentation related to the CMPT 733 Project.
 
 #### Web URL
-The application is hosted on the Google Cloud platform at the following URL: http://rightfluencer.ml
+The application is hosted on the Google Cloud platform at the following URL: [rightfluencer.ml](http://rightfluencer.ml)
 
 #### What is RightFluencer ?
 
@@ -30,10 +30,24 @@ An interactive web application and dashboard that allows you to find the right i
 #### Deploying the Application
 
 * The application has been hosted on Google Cloud at [rightfluencer.ml](rightfluencer.ml)
-* If you wish to run the application locally:
-..* Clone the repository
-... ``` cd web-app/
-        python3 app.py ```
+* If you wish to run the application locally: Clone the repository and run the following commands.
+``` cd web-app/
+python3 app.py ```
 * Dependencies to be installed: `flask`, `pymongo`, `plotly`, `requests`, `numpy`, `pandas`. These dependencies can be installed using `pip3` or `conda`
 * The application has been tested with python3 using the anaconda python distribution.
 
+#### Repository Contents
+
+Some of the important components of RightFluencer are listed below:
+
+* The repository has been organized based on the steps in the data science pipeline
+* The actual web application is contained in the `web-app` folder.
+* Data collection: `data-collection\<data_source.ipynb`
+* Data aggregation: `data-aggregation\Aggregator.ipynb`
+* Data cleaning: `data-preprocessing\Preprocess-NLP.ipynb`, `data-preprocessing\youtube-clean.ipynb`
+* LDA: `data-analysis\LDA\`
+* LSI: `data-analysis\TF-IDF\`
+* nGram: `data-analysis\ngram\`
+* Keras: `data-analysis\KerasModelsNotebook.Rmd`
+* Flask app: `web-app\app.py`
+* Visualization: `web-app\plots.py`
