@@ -27,6 +27,12 @@ An interactive web application and dashboard that allows you to find the right i
 * Data collection: RESTful API Client, Web scrapers
 * Data sources: Instagram, Facebook, YouTube, Twitter, Klout
 
+#### Testing the application
+* Enter a product and category at the following URL to get influencer recommendations [rightfluencer.ml/influencers/search](http://rightfluencer.ml/influencers/search/)
+* Example - Product: Laptop, Category: Technology
+* Visit [rightfluencer.ml/influencers/all](http://rightfluencer.ml/influencers/all/) to see all influencers
+* Visit [rightfluencer.ml/influencers/categories](http://rightfluencer.ml/influencers/categories/) to see categories and respective influencers
+
 #### Deploying the Application
 
 * The application has been hosted on Google Cloud at [rightfluencer.ml](rightfluencer.ml)
