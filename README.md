@@ -26,3 +26,14 @@ An interactive web application and dashboard that allows you to find the right i
 * Data storage: MongoDB
 * Data collection: RESTful API Client, Web scrapers
 * Data sources: Instagram, Facebook, YouTube, Twitter, Klout
+
+#### Deploying the Application
+
+* The application has been hosted on Google Cloud at [rightfluencer.ml](rightfluencer.ml)
+* If you wish to run the application locally:
+..* Clone the repository
+... ``` cd web-app/
+        python3 app.py ```
+* Dependencies to be installed: `flask`, `pymongo`, `plotly`, `requests`, `numpy`, `pandas`. These dependencies can be installed using `pip3` or `conda`
+* The application has been tested with python3 using the anaconda python distribution.
+
