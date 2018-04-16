@@ -35,6 +35,12 @@ An interactive web application and dashboard that allows you to find the right i
 python3 app.py ```
 * Dependencies to be installed: `flask`, `pymongo`, `plotly`, `requests`, `numpy`, `pandas`. These dependencies can be installed using `pip3` or `conda`
 * The application has been tested with python3 using the anaconda python distribution.
+* The database has to restored using the data available in the `mongo-data` folder. The name of the database is `influencers_db`.
+* To install mongoDB on Mac OSX (.tar.gz install recommended) - [https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
+* To install mongoDB on Ubuntu 16.04 - [https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+* MongoDB port: 27017
+* MongoDB server start/stop: `sudo service mongod start/stop` (Ubuntu) or `sudo mongod` (Mac)
+* Start using Mongo through console: `mongo --host 127.0.0.1:27017`
 
 #### Repository Contents
 
